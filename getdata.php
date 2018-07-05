@@ -19,12 +19,12 @@ while($row = $result->fetch_assoc()){
 }
 // echo json_encode($arrrayResult);
 
-switch ($_GET('id')) {
+switch ($_GET['id']) {
 	case 'temp_f':
 		// echo substr(($arrayResult[-1]-32)*0.5556, 0, 4);
 		break;
 	case 'temp_c':
-		echo $arrayResult[temperature][-1]
+		// echo $arrayResult[temperature][-1];
 		break;
 
 	default:
