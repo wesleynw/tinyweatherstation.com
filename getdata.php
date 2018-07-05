@@ -5,8 +5,8 @@ date_default_timezone_set('America/Los_Angeles');
 require 'vendor/autoload.php';
 use Carbon\Carbon;
 
-
-$connection = new MySQLi('198.199.90.104', 'phpuser', '5357', 'weather');
+//this mysql user is granted only select privileges, you may use it to fetch data if you would like...
+$connection = new MySQLi('178.128.152.62', 'webuser', '1234', 'weather');
 if($connection->connect_error){
 	die("Connection failed: " . $connection->connect_error);
 }
