@@ -24,7 +24,7 @@ switch ($_GET('id')) {
 		// echo substr(($arrayResult[-1]-32)*0.5556, 0, 4);
 		break;
 	case 'temp_c':
-		echo $arrayResult[temperature][-1]
+		echo $arrayResult[temperature][-1];
 		break;
 
 	default:
