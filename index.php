@@ -3,9 +3,10 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Weather Station</title>
+	<title>TinyWeatherStation</title>
 
 	<link rel="shortcut icon" href="/favicon.ico">
+	
 	<!--Import Google Icon Font-->
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
@@ -13,9 +14,6 @@
 	<link type="text/css" rel="stylesheet" href="/materialize/css/materialize.min.css" media="screen,projection" />
 
 	<script async defer src="https://buttons.github.io/buttons.js"></script>
-
-	<!-- Import moment.js -->
-	<!-- <script src="moment-with-locales.js"></script>? -->
 
 	<!--	Import ajax-->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
