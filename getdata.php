@@ -26,6 +26,7 @@ while($row = $result->fetch_assoc()){
 
 
 
+
 // $sql = "SELECT * FROM home ORDER BY timestamp DESC LIMIT 1";
 // $sqlAll = "SELECT * FROM home";
 // $data = $connection->query($sql)->fetch_assoc();
