@@ -21,11 +21,12 @@ while($row = $result->fetch_assoc()){
 
 switch ($_GET['id']) {
 	case 'temp_f':
-		echo $arrayResult[temperature][-1];
+		// echo $arrayResult[temperature][-1];
+		echo end($arrayResult)[temperature];
 
 		break;
 	case 'temp_c':
-				echo substr(($arrayResult[-1]-32)*0.5556, 0, 4);
+		echo substr(($arrayResult[-1]-32)*0.5556, 0, 4);
 		break;
 
 	default:
