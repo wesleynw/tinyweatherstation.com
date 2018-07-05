@@ -36,9 +36,6 @@ switch ($_GET['type']) {
 		break;
 	case "all":
 		echo json_encode($arrayResult);
-	default:
-		echo "error";
-		break;
 }
 
 ?>
