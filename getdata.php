@@ -11,35 +11,34 @@ if($connection->connect_error){
 	die("Connection failed: " . $connection->connect_error);
 }
 
-$sql = "SELECT * FROM home ORDER BY timestamp DESC LIMIT 1";
-$sqlAll = "SELECT * FROM home";
-$data = $connection->query($sql)->fetch_assoc();
-$result = $connection->query($sqlAll);
+$query = "SELECT * FROM ". $_GET['loc'] . ";";
+$result = $connection->query($query);
 
+while($row = $result->fetch_assoc()){
+	$arrayResult[] = $row;
+}
 
-		switch($_GET['id']){
-			case "farenheit":
-				echo $data[temperature];
-				break;
-			case "celsius":
-				echo substr(($data[temperature]-32)*0.5556, 0, 4);
-				break;
-			case "humidity":
-				echo $data[humidity];
-				break;
-			case "pressure":
-				echo $data[pressure];
-				break;
-			case "time":
-				echo "Last Updated: " . Carbon::createFromFormat('Y-m-d H:i:s', $data[timestamp], 'UTC')->setTimezone('America/Los_Angeles')->diffForHumans();
-				break;
-			case "all":
-					$results = array();
-					while($data = $result->fetch_assoc()){
-						array_push($results, $data);
-					}
-					echo json_encode($results);
-					break;
+switch ($_GET['type']) {
+	case 'temp_f':
+		echo end($arrayResult)[temperature];
+		break;
+	case 'temp_c':
+		echo substr((end($arrayResult)[temperature]-32)*0.5556, 0, 4);
+		break;
+	case 'humidity':
+		echo end($arrayResult)[humidity];
+		break;
+	case 'pressure':
+		echo end($arrayResult)[pressure];
+		break;
+	case "time":
+		echo "Last Updated: " . Carbon::createFromFormat('Y-m-d H:i:s', end($arrayResult)[timestamp], 'UTC')->setTimezone('America/Los_Angeles')->diffForHumans();
+		break;
+	case "all":
+		echo json_encode($arrrayResult);
+	default:
+		echo "error";
+		break;
+}
 
-		}
 ?>

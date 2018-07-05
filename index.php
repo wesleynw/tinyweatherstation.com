@@ -3,9 +3,10 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Weather Station</title>
+	<title>TinyWeatherStation</title>
 
 	<link rel="shortcut icon" href="/favicon.ico">
+
 	<!--Import Google Icon Font-->
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
@@ -13,9 +14,6 @@
 	<link type="text/css" rel="stylesheet" href="/materialize/css/materialize.min.css" media="screen,projection" />
 
 	<script async defer src="https://buttons.github.io/buttons.js"></script>
-
-	<!-- Import moment.js -->
-	<!-- <script src="moment-with-locales.js"></script>? -->
 
 	<!--	Import ajax-->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -194,18 +192,17 @@
 		});
 
 		function updateData() {
-			var tempToggle = document.getElementById("tempSwitch");
-			if (tempToggle.checked == true) {
-				$("#tempField").load("getdata.php?id=celsius");
+			if (document.getElementById("tempSwitch").checked == true) {
+				$("#tempField").load("getdata.php?loc=home&type=temp_c");
 			} else {
-				$("#tempField").load("getdata.php?id=farenheit");
+				$("#tempField").load("getdata.php?loc=home&type=temp_f");
 			}
 
-			$("#humidityField").load("getdata.php?id=humidity");
-			$("#pressureField").load("getdata.php?id=pressure");
-			$("#timeField").load("getdata.php?id=time");
-			$("#timeField1").load("getdata.php?id=time");
-			$("#timeField2").load("getdata.php?id=time");
+			$("#humidityField").load("getdata.php?loc=home&type=humidity");
+			$("#pressureField").load("getdata.php?loc=home&type=pressure");
+			$("#timeField").load("getdata.php?loc=home&type=time");
+			$("#timeField1").load("getdata.php?loc=home&type=time");
+			$("#timeField2").load("getdata.php?loc=home&type=time");
 		}
 		setInterval(updateData, 1000 * 60 * 1);
 
@@ -216,7 +213,7 @@
 		});
 
 		$(function() {
-			$.getJSON('getdata.php?id=all', function(json, status) {
+			$.getJSON('getdata.php?loc=home&type=all', function(json, status) {
 				var temperature = [],
 					humidity = [],
 					pressure = [];
