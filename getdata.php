@@ -17,6 +17,7 @@ $result = $connection->query($query);
 while($row = $result->fetch_assoc()){
 	$arrrayResult[] = $row;
 }
+echo $arrayResult;
 
 
 
