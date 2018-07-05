@@ -11,6 +11,17 @@ if($connection->connect_error){
 	die("Connection failed: " . $connection->connect_error);
 }
 
+$query = "SELECT * FROM ", $_GET['loc'];
+$data = $connection->query($query)->fetch_assoc();
+echo $data;
+
+
+
+
+
+
+
+
 $sql = "SELECT * FROM home ORDER BY timestamp DESC LIMIT 1";
 $sqlAll = "SELECT * FROM home";
 $data = $connection->query($sql)->fetch_assoc();
@@ -42,4 +53,5 @@ $result = $connection->query($sqlAll);
 					break;
 
 		}
+
 ?>
