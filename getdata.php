@@ -11,7 +11,8 @@ if($connection->connect_error){
 	die("Connection failed: " . $connection->connect_error);
 }
 
-// $query = "SELECT * FROM ". $_GET['loc'] . ";";
+$query = "SELECT * FROM ". $_GET['loc'] . ";";
+echo $query
 // $result = array($connection->query($query));
 // // $result = array();
 // while($data = $result->fetch_assoc()){
