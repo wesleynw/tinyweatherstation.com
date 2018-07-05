@@ -35,7 +35,7 @@ switch ($_GET['type']) {
 		echo "Last Updated: " . Carbon::createFromFormat('Y-m-d H:i:s', end($arrayResult)[timestamp], 'UTC')->setTimezone('America/Los_Angeles')->diffForHumans();
 		break;
 	case "all":
-		echo json_encode($arrrayResult);
+		echo json_encode($arrayResult);
 	default:
 		echo "error";
 		break;
