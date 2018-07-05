@@ -14,11 +14,19 @@ if($connection->connect_error){
 $query = "SELECT * FROM ". $_GET['loc'] . ";";
 $result = $connection->query($query);
 
+<<<<<<< HEAD
 while($row = $result->fetch_assoc()){
 	// array_push($arrayResult, $data);
 	$arrrayResult[] = $row;
 }
 
+=======
+$arrayResult = array();
+while($data = $result->fetch_assoc()){
+	array_push($arrayResult, $data);
+}
+echo $arrayResult;
+>>>>>>> 55f5656d825876dd2d8e4912c981b40b6996abfe
 
 
 
