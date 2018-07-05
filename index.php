@@ -180,7 +180,10 @@
 	<script>
 		function graphWarning() {
 			M.toast({
-				html: 'Warning: Graphs may not work on mobile devices.'
+				html: 'Graphs make take a long time to load...'
+			});
+			M.toast({
+				html: 'Warning: Graphs may not work on mobile devices...'
 			});
 		}
 
