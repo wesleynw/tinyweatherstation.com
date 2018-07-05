@@ -20,7 +20,11 @@ $result = array($connection->query($query));
 while($data = $result->fetch_assoc()){
 	array_push($results, $data);
 }
+<<<<<<< HEAD
 echo $result;
+=======
+echo $result
+>>>>>>> 5d181862ebb90679eab4f019c439bdba2f964efd
 
 
 
