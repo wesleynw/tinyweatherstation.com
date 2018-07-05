@@ -11,20 +11,13 @@ if($connection->connect_error){
 	die("Connection failed: " . $connection->connect_error);
 }
 
-$query = "SELECT * FROM ", $_GET['loc'], ";";
-$data = $connection->query($query)->fetch_assoc();
-
-$query = "SELECT * FROM ", $_GET['loc'], ";";
+$query = "SELECT * FROM ". $_GET['loc'] . ";";
 $result = array($connection->query($query));
 // $result = array();
 while($data = $result->fetch_assoc()){
 	array_push($results, $data);
 }
-<<<<<<< HEAD
 echo $result;
-=======
-echo $result
->>>>>>> 5d181862ebb90679eab4f019c439bdba2f964efd
 
 
 
