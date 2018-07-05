@@ -17,7 +17,7 @@ $result = $connection->query($query);
 while($row = $result->fetch_assoc()){
 	$arrrayResult[] = $row;
 }
-echo $arrayResult;
+echo json_encode($arrrayResult);
 
 
 
