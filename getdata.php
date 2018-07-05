@@ -10,6 +10,7 @@ $connection = new MySQLi('178.128.152.62', 'webuser', '1234', 'weather');
 if($connection->connect_error){
 	die("Connection failed: " . $connection->connect_error);
 }
+echo "success";
 
 $query = "SELECT * FROM ". $_GET['loc'] . ";";
 echo $query
