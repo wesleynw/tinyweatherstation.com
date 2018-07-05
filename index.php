@@ -198,11 +198,11 @@
 				$("#tempField").load("getdata.php?loc=home&type=temp_f");
 			}
 
-			$("#humidityField").load("getdata.php?type=humidity");
-			$("#pressureField").load("getdata.php?type=pressure");
-			$("#timeField").load("getdata.php?type=time");
-			$("#timeField1").load("getdata.php?type=time");
-			$("#timeField2").load("getdata.php?type=time");
+			$("#humidityField").load("getdata.php?loc=home&type=humidity");
+			$("#pressureField").load("getdata.php?loc=home&type=pressure");
+			$("#timeField").load("getdata.php?loc=home&type=time");
+			$("#timeField1").load("getdata.php?loc=home&type=time");
+			$("#timeField2").load("getdata.php?loc=home&type=time");
 		}
 		setInterval(updateData, 1000 * 60 * 1);
 
