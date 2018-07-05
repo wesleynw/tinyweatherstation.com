@@ -15,9 +15,22 @@ $query = "SELECT * FROM ". $_GET['loc'] . ";";
 $result = $connection->query($query);
 
 while($row = $result->fetch_assoc()){
-	$arrrayResult[] = $row;
+	$arrayResult[] = $row;
 }
-echo json_encode($arrrayResult);
+// echo json_encode($arrrayResult);
+
+switch ($_GET('id')) {
+	case 'temp_f':
+		// echo substr(($arrayResult[-1]-32)*0.5556, 0, 4);
+		break;
+	case 'temp_c':
+		echo $arrayResult[temperature][-1]
+		break;
+
+	default:
+		echo "error";
+		break;
+}
 
 
 
