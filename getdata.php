@@ -12,12 +12,13 @@ if($connection->connect_error){
 }
 
 $query = "SELECT * FROM ". $_GET['loc'] . ";";
-$result = array($connection->query($query));
-$result = array();
+$result = $connection->query($query);
+
+$arrayResult = array();
 while($data = $result->fetch_assoc()){
-	array_push($results, $data);
+	array_push($arrayResult, $data);
 }
-echo $result;
+echo $arrayResult;
 
 
 
