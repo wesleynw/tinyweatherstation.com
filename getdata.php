@@ -26,7 +26,7 @@ switch ($_GET['id']) {
 
 		break;
 	case 'temp_c':
-		echo substr(($arrayResult[-1]-32)*0.5556, 0, 4);
+		echo substr((end($arrayResult)-32)*0.5556, 0, 4);
 		break;
 
 	default:
