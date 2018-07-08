@@ -224,7 +224,7 @@
 		// 	expire.setTime(today.getTime() + 3600000*24*365);
 		// 	document.cookie = 'location='+loc+'; expires='+expire.toGMTString();
 		// }
-		
+
 		function graphWarning() {
 			M.toast({
 				html: 'Warning: Graphs may not work on mobile devices...'
@@ -247,6 +247,7 @@
 		});
 
 		function updateData() {
+			var today = new Date();
 			var expire = new Date();
 			expire.setTime(today.getTime() + 3600000*24*365);
 			// document.cookie = "username=John Doe";
