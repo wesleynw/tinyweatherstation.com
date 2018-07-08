@@ -48,7 +48,7 @@
 				<a class="brand-logo center" title="tinyweatherstation.com"><i class="material-icons">cloud</i></a>
 				<ul class="right">
 					<li>
-						<a class="" title="Change location..."><i class="material-icons left">edit_location</i>Change location</a>
+						<a class="modal-trigger" data-target="select-loc" title="Change location..."><i class="material-icons left">edit_location</i>Change location</a>
 					</li>
 				</ul>
 			</div>
