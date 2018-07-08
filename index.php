@@ -19,10 +19,10 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
 	<!-- Import highcharts -->
-	<script src="highcharts/code/highstock.js"></script>
-	<script src="highcharts/code/modules/exporting.js"></script>
-	<script src="highcharts/code/modules/export-data.js"></script>
-	<script src="highcharts/code/js/themes/sand-signika.js"></script>
+	<script src="/highcharts/code/highstock.js"></script>
+	<script src="/highcharts/code/modules/exporting.js"></script>
+	<script src="/highcharts/code/modules/export-data.js"></script>
+	<script src="/highcharts/code/js/themes/sand-signika.js"></script>
 
 	<style>
 		body {
@@ -45,10 +45,56 @@
 	<header>
 		<nav class="navbar-fixed blue lighten-1">
 			<div class="nav-wrapper">
-				<a class="brand-logo center" title="Weather"><i class="material-icons">cloud</i></a>
+				<a class="brand-logo center" title="tinyweatherstation.com"><i class="material-icons">cloud</i></a>
+				<ul class="right">
+					<li>
+						<a class="modal-trigger" data-target="select-loc" title="Change location..."><i class="material-icons left">edit_location</i>Change location</a>
+					</li>
+				</ul>
 			</div>
 		</nav>
 	</header>
+
+	<div id="select-loc" class="modal fade">
+		<div class="modal-content">
+			<h4>Choose your weather station location...</h4>
+			<form action="#" onchange="updateData()">
+				<p>
+					<label>
+						<input type="radio" name="location" value="los_ranchos" class="with-gap">
+						<span>Los Ranchos Elementary School</span>
+					</label>
+				</p>
+				<p>
+					<label>
+						<input type="radio" name="location" value="hawthorne" class="with-gap">
+						<span>Hawthorne Elementary School</span>
+					</label>
+				</p>
+				<p>
+					<label>
+						<input type="radio" name="location" value="bellevue" class="with-gap">
+						<span>Bellevue Santa Fe Charter School</span>
+					</label>
+				</p>
+				<p>
+					<label>
+						<input type="radio" name="location" value="home" class="with-gap" checked>
+						<span>Home</span>
+					</label>
+				</p>
+				<p>
+					<label>
+					<input type="radio" name="location" value="home_indoor" class="with-gap">
+					<span>Home (Indoor)</span>
+					</label>
+				</p>
+			</form>
+		</div>
+		<div class="modal-footer">
+			<a href="#!" class="modal-close waves-effect waves-light btn-flat" onclick="updateData()">select</a>
+		</div>
+	</div>
 
 	<div id="modal-info" class="modal bottom-sheet">
 		<div class="modal-content">
@@ -168,20 +214,31 @@
 		</div>
 		<div class="footer-copyright">
 			<div class="container">
-				Created by Wesley Weisenberger
+				Created by Wesley Weisenberger - Version 1.70.1
 				<a class="grey-text text-lighten-4 right waves-effect waves-light modal-trigger" href="#modal-info">Contact Me</a>
 			</div>
 		</div>
 	</footer>
 
-
-
 	<script type="text/javascript" src="/materialize/js/materialize.min.js"></script>
 	<script>
+		function getCookie(c_name) {
+			var c_value = " " + document.cookie;
+			var c_start = c_value.indexOf(" " + c_name + "=");
+			if (c_start == -1) {
+				c_value = null;
+			} else {
+				c_start = c_value.indexOf("=", c_start) + 1;
+				var c_end = c_value.indexOf(";", c_start);
+				if (c_end == -1) {
+					c_end = c_value.length;
+				}
+				c_value = unescape(c_value.substring(c_start, c_end));
+			}
+			return c_value;
+		}
+
 		function graphWarning() {
-			M.toast({
-				html: 'Graphs make take a long time to load...'
-			});
 			M.toast({
 				html: 'Warning: Graphs may not work on mobile devices...'
 			});
@@ -191,23 +248,12 @@
 			$('.modal').modal();
 			$('select').formSelect();
 			$('.tooltipped').tooltip();
+			$('#select-loc').modal({
+				complete: updateData()
+			})
+
 			updateData();
 		});
-
-		function updateData() {
-			if (document.getElementById("tempSwitch").checked == true) {
-				$("#tempField").load("getdata.php?loc=home&type=temp_c");
-			} else {
-				$("#tempField").load("getdata.php?loc=home&type=temp_f");
-			}
-
-			$("#humidityField").load("getdata.php?loc=home&type=humidity");
-			$("#pressureField").load("getdata.php?loc=home&type=pressure");
-			$("#timeField").load("getdata.php?loc=home&type=time");
-			$("#timeField1").load("getdata.php?loc=home&type=time");
-			$("#timeField2").load("getdata.php?loc=home&type=time");
-		}
-		setInterval(updateData, 1000 * 60 * 1);
 
 		Highcharts.setOptions({
 			global: {
@@ -215,8 +261,31 @@
 			}
 		});
 
-		$(function() {
-			$.getJSON('getdata.php?loc=home&type=all', function(json, status) {
+		function updateData() {
+			if (getCookie('location') == true) {
+				loc = getCookie('location')
+			} else {
+				loc = document.querySelector('input[name="location"]:checked').value;
+				var today = new Date();
+				var expire = new Date();
+				expire.setTime(today.getTime() + 3600000 * 24 * 365);
+				document.cookie = "location=" + loc + "; expires=" + expire.toGMTString();
+			}
+
+
+			if (document.getElementById("tempSwitch").checked == true) {
+				$("#tempField").load('/getdata.php?loc=' + loc + '&type=temp_c');
+			} else {
+				$("#tempField").load('/getdata.php?loc=' + loc + '&type=temp_f');
+			}
+
+			$('#humidityField').load('/getdata.php?loc=' + loc + '&type=humidity')
+			$('#pressureField').load('/getdata.php?loc=' + loc + '&type=pressure')
+			$('#timeField').load('/getdata.php?loc=' + loc + '&type=time')
+			$('#timeField1').load('/getdata.php?loc=' + loc + '&type=time')
+			$('#timeField2').load('/getdata.php?loc=' + loc + '&type=time')
+
+			$.getJSON('/getdata.php?loc=' + loc + '&type=all', function(json, status) {
 				var temperature = [],
 					humidity = [],
 					pressure = [];
@@ -389,7 +458,12 @@
 					}
 				})
 			})
-		})
+
+
+
+
+		}
+		setInterval(updateData, 1000 * 60 * 1);
 	</script>
 
 </body>
