@@ -46,6 +46,7 @@
 		<nav class="navbar-fixed blue lighten-1">
 			<div class="nav-wrapper">
 				<a class="brand-logo center" title="tinyweatherstation.com"><i class="material-icons">cloud</i></a>
+				<a href="#" data-target="mobile-navbar" class="sidenav-trigger btn-flat white-text"><i class="material-icons">menu</i></a>
 				<ul class="right hide-on-med-and-down">
 					<li>
 						<a class="modal-trigger" data-target="select-loc" title="Change location..."><i class="material-icons left">edit_location</i>Change location</a>
@@ -54,17 +55,35 @@
 			</div>
 		</nav>
 
-		<ul class="sidenav">
+		<ul class="sidenav" id="mobile-navbar">
 			<li>
-				<a href="#">Change Location</a>
-			</li>
-			<li>
-				<a href="#">Contact Me</a>
+				<div class="user-view">
+					<div class="background">
+						<div style="background: #616161; height: 100px;">
+						</div>
+					</div>
+					<a href="#user"><i class="material-icons">cloud</i></a>
+					<a href="#name"><span class="white-text name">tinyweatherstation.com</span></a>
+				</div>
+				<li>
+					<a class="modal-trigger" data-target="select-loc">
+					<i class="material-icons">edit_location</i>Edit location</a>
+				</li>
+				<li>
+					<a class="modal-trigger" data-target="modal-info">
+					<i class="material-icons">info</i>Contact me</a>
+				</li>
+				<li>
+					<a href="https://github.com/wesleynw/tinyweatherstation.com">
+						<i class="material-icons">group_work</i>See my project on GitHub</a>
+				</li>
 			</li>
 		</ul>
+
+
 	</header>
 
-	<div id="select-loc" class="modal fade">
+	<div id="select-loc" class="modal fade bottom-sheet">
 		<div class="modal-content">
 			<h4>Choose your location...</h4>
 			<form action="#" onchange="updateCookie()">
@@ -212,18 +231,18 @@
 	<footer class="page-footer light-blue">
 		<div class="container">
 			<div class="row">
-				<div class="col l6 s12">
+				<div class="col l6 s12 ">
 					<h5 class="white-text">Site Info</h5>
-					<p class="grey-text text-lighten-4">This site is part of my Eagle Scout project, multiple weather stations (are being) were installed at various schools, and now they
-					upload their weather data to this website.</p>
-					<p><a class="github-button" href="https://github.com/wesleynw/tinyweatherstation.com" data-size="large" aria-label="Star wesleynw/weather-station on GitHub">See my project on GitHub</a></p>
+					<p class="grey-text text-lighten-4">This site is part of my Eagle Scout project, multiple weather stations (are being) were installed at various schools, and now they upload their weather data to this website.</p>
+					<p class="hide-on-med-and-down"><a class="github-button" href="https://github.com/wesleynw/tinyweatherstation.com" data-size="large" aria-label="Star wesleynw/weather-station on GitHub">See my project on GitHub</a></p>
+
 				</div>
 			</div>
 		</div>
 		<div class="footer-copyright">
 			<div class="container">
-				Created by Wesley Weisenberger - Version 1.77.1
-				<a class="grey-text text-lighten-4 right waves-effect waves-light modal-trigger" href="#modal-info">Contact Me</a>
+				Created by Wesley Weisenberger - v1.77.1
+				<a class="grey-text text-lighten-4 right waves-effect waves-light modal-trigger hide-on-med-and-down" href="#modal-info">Contact Me</a>
 			</div>
 		</div>
 	</footer>
@@ -263,6 +282,7 @@
 
 		$(document).ready(function() {
 			$('.modal').modal();
+			$('.sidenav').sidenav();
 			$('select').formSelect();
 			$('.tooltipped').tooltip();
 			$('#select-loc').modal({
@@ -281,7 +301,7 @@
 		function updateData() {
 			if (getCookie('location') != null) {
 				loc = getCookie('location')
-				document.getElementById(loc+'_check').checked = true;
+				document.getElementById(loc + '_check').checked = true;
 			} else {
 				$('#select-loc').modal('open');
 			}
