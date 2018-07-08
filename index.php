@@ -246,6 +246,7 @@
 		});
 
 		function updateData() {
+			document.cookie = "username=John Doe"
 			loc = document.querySelector('input[name="location"]:checked').value;
 
 			if (document.getElementById("tempSwitch").checked == true) {
