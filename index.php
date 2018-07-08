@@ -214,7 +214,7 @@
 		</div>
 		<div class="footer-copyright">
 			<div class="container">
-				Created by Wesley Weisenberger - Version 1.46.1
+				Created by Wesley Weisenberger - Version 1.70.1
 				<a class="grey-text text-lighten-4 right waves-effect waves-light modal-trigger" href="#modal-info">Contact Me</a>
 			</div>
 		</div>
