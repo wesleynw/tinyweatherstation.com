@@ -58,34 +58,34 @@
 	<div id="select-loc" class="modal fade">
 		<div class="modal-content">
 			<h4>Choose your weather station location...</h4>
-			<form action="#" onchange="updateData()">
+			<form action="#" onchange="updateCookie()">
 				<p>
 					<label>
-						<input type="radio" name="location" value="los_ranchos" class="with-gap">
+						<input type="radio" name="location" value="los_ranchos" class="with-gap" id='los_ranchos_check'>
 						<span>Los Ranchos Elementary School</span>
 					</label>
 				</p>
 				<p>
 					<label>
-						<input type="radio" name="location" value="hawthorne" class="with-gap">
+						<input type="radio" name="location" value="hawthorne" class="with-gap" id="hawthorne_check">
 						<span>Hawthorne Elementary School</span>
 					</label>
 				</p>
 				<p>
 					<label>
-						<input type="radio" name="location" value="bellevue" class="with-gap">
+						<input type="radio" name="location" value="bellevue" class="with-gap" id="bellevue_check">
 						<span>Bellevue Santa Fe Charter School</span>
 					</label>
 				</p>
 				<p>
 					<label>
-						<input type="radio" name="location" value="home" class="with-gap" checked>
+						<input type="radio" name="location" value="home" class="with-gap" id="home_check">
 						<span>Home</span>
 					</label>
 				</p>
 				<p>
 					<label>
-					<input type="radio" name="location" value="home_indoor" class="with-gap">
+					<input type="radio" name="location" value="home_indoor" class="with-gap" id="home_indoor_check">
 					<span>Home (Indoor)</span>
 					</label>
 				</p>
@@ -214,7 +214,7 @@
 		</div>
 		<div class="footer-copyright">
 			<div class="container">
-				Created by Wesley Weisenberger - Version 1.70.1
+				Created by Wesley Weisenberger - Version 1.77.1
 				<a class="grey-text text-lighten-4 right waves-effect waves-light modal-trigger" href="#modal-info">Contact Me</a>
 			</div>
 		</div>
@@ -236,6 +236,15 @@
 				c_value = unescape(c_value.substring(c_start, c_end));
 			}
 			return c_value;
+		}
+
+		function updateCookie() {
+			loc = document.querySelector('input[name="location"]:checked').value;
+			var today = new Date();
+			var expire = new Date();
+			expire.setTime(today.getTime() + 3600000 * 24 * 365);
+			document.cookie = "location=" + loc + "; expires=" + expire.toGMTString();
+			updateData();
 		}
 
 		function graphWarning() {
@@ -262,14 +271,11 @@
 		});
 
 		function updateData() {
-			if (getCookie('location') == true) {
+			if (getCookie('location') != null) {
 				loc = getCookie('location')
+				document.getElementById(loc+'_check').checked = true;
 			} else {
-				loc = document.querySelector('input[name="location"]:checked').value;
-				var today = new Date();
-				var expire = new Date();
-				expire.setTime(today.getTime() + 3600000 * 24 * 365);
-				document.cookie = "location=" + loc + "; expires=" + expire.toGMTString();
+				$('#select-loc').modal('open');
 			}
 
 
