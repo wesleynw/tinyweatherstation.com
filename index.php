@@ -218,12 +218,21 @@
 	<script type="text/javascript" src="/materialize/js/materialize.min.js"></script>
 	<script>
 
-		// function setLocCookie(){
-		// 	var expire = new Date();
-		// 	var loc = document.querySelector('input[name="location"]:checked').value;
-		// 	expire.setTime(today.getTime() + 3600000*24*365);
-		// 	document.cookie = 'location='+loc+'; expires='+expire.toGMTString();
-		// }
+		function getCookie(c_name) {
+			var c_value = " " + document.cookie;
+			var c_start = c_value.indexOf(" " + c_name + "=");
+			if (c_start == -1) {
+				c_value = null;
+			} else {
+				c_start = c_value.indexOf("=", c_start) + 1;
+				var c_end = c_value.indexOf(";", c_start);
+				if (c_end == -1) {
+					c_end = c_value.length;
+				}
+				c_value = unescape(c_value.substring(c_start, c_end));
+			}
+			return c_value;
+		}
 
 		function graphWarning() {
 			M.toast({
@@ -247,26 +256,30 @@
 		});
 
 		function updateData() {
-			var today = new Date();
-			var expire = new Date();
-			expire.setTime(today.getTime() + 3600000*24*365);
-			// document.cookie = "username=John Doe";
-			loc = document.querySelector('input[name="location"]:checked').value;
-			document.cookie = "location="+loc+"; expires="+expire.toGMTString();
-
-			if (document.getElementById("tempSwitch").checked == true) {
-				$("#tempField").load('/getdata.php?loc='+loc+'&type=temp_c');
+			if(getCookie('location') != NULL) {
+				loc = getCookie('location')
 			} else {
-				$("#tempField").load('/getdata.php?loc='+loc+'&type=temp_f');
+				loc = document.querySelector('input[name="location"]:checked').value;
+				var today = new Date();
+				var expire = new Date();
+				expire.setTime(today.getTime() + 3600000 * 24 * 365);
+				document.cookie = "location=" + loc + "; expires=" + expire.toGMTString();
 			}
 
-			$('#humidityField').load('/getdata.php?loc='+loc+'&type=humidity')
-			$('#pressureField').load('/getdata.php?loc='+loc+'&type=pressure')
-			$('#timeField').load('/getdata.php?loc='+loc+'&type=time')
-			$('#timeField1').load('/getdata.php?loc='+loc+'&type=time')
-			$('#timeField2').load('/getdata.php?loc='+loc+'&type=time')
 
-			$.getJSON('/getdata.php?loc='+loc+'&type=all', function(json, status) {
+			if (document.getElementById("tempSwitch").checked == true) {
+				$("#tempField").load('/getdata.php?loc=' + loc + '&type=temp_c');
+			} else {
+				$("#tempField").load('/getdata.php?loc=' + loc + '&type=temp_f');
+			}
+
+			$('#humidityField').load('/getdata.php?loc=' + loc + '&type=humidity')
+			$('#pressureField').load('/getdata.php?loc=' + loc + '&type=pressure')
+			$('#timeField').load('/getdata.php?loc=' + loc + '&type=time')
+			$('#timeField1').load('/getdata.php?loc=' + loc + '&type=time')
+			$('#timeField2').load('/getdata.php?loc=' + loc + '&type=time')
+
+			$.getJSON('/getdata.php?loc=' + loc + '&type=all', function(json, status) {
 				var temperature = [],
 					humidity = [],
 					pressure = [];
@@ -445,8 +458,6 @@
 
 		}
 		setInterval(updateData, 1000 * 60 * 1);
-
-
 	</script>
 
 </body>
