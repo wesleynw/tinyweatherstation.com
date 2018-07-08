@@ -53,7 +53,7 @@
 	<div id="select-loc" class="modal fade">
 		<div class="modal-content">
 			<h4>Choose your weather station location...</h4>
-			<form action="#" onchange="setCookie('location', this.value, 365);">
+			<form action="#" onchange="setLocCookie(this.value)">
 				<p>
 					<label>
 						<input type="radio" name="location" value="los_ranchos" class="with-gap">
