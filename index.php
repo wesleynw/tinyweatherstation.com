@@ -262,7 +262,7 @@
 		});
 
 		function updateData() {
-			if (getCookie('location') == true) {
+			if (getCookie('location') != null) {
 				loc = getCookie('location')
 			} else {
 				loc = document.querySelector('input[name="location"]:checked').value;
