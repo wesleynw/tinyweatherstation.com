@@ -244,6 +244,10 @@
 			$('.modal').modal();
 			$('select').formSelect();
 			$('.tooltipped').tooltip();
+			// $('#select-loc').modal('open');
+			$('#select-loc').openModal({
+				complete: updateData()
+			})
 
 			updateData();
 		});
@@ -258,14 +262,11 @@
 			if(getCookie('location') == true) {
 				loc = getCookie('location')
 			} else {
-				$('#select-loc').modal('open');
-				if($('#select-loc').modal('isOpen')){
 					loc = document.querySelector('input[name="location"]:checked').value;
 					var today = new Date();
 					var expire = new Date();
 					expire.setTime(today.getTime() + 3600000 * 24 * 365);
 					document.cookie = "location=" + loc + "; expires=" + expire.toGMTString();
-				}
 			}
 
 
