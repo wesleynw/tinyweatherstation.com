@@ -50,6 +50,47 @@
 		</nav>
 	</header>
 
+	<div id="select-loc" class="modal fade">
+		<div class="modal-content">
+			<h4>Choose your weather station location...</h4>
+			<form action="#">
+				<p>
+					<label>
+						<input type="radio" name="location" value="" checked class="with-gap">
+						<span>Los Ranchos Elementary School</span>
+					</label>
+				</p>
+				<p>
+					<label>
+						<input type="radio" name="location" value="" class="with-gap">
+						<span>Hawthorne Elementary School</span>
+					</label>
+				</p>
+				<p>
+					<label>
+						<input type="radio" name="location" value="" class="with-gap">
+						<span>Bellevue Santa Fe Charter School</span>
+					</label>
+				</p>
+				<p>
+					<label>
+						<input type="radio" name="location" value="" class="with-gap">
+						<span>Home</span>
+					</label>
+				</p>
+				<p>
+					<label>
+					<input type="radio" name="location" value="" class="with-gap">
+					<span>Home (Indoor)</span>
+					</label>
+				</p>
+
+
+
+			</form>
+		</div>
+	</div>
+
 	<div id="modal-info" class="modal bottom-sheet">
 		<div class="modal-content">
 			<h4>Contact Me</h4>
@@ -180,21 +221,21 @@
 	<script>
 		function graphWarning() {
 			M.toast({
-				html: 'Graphs make take a long time to load...'
-			});
-			M.toast({
 				html: 'Warning: Graphs may not work on mobile devices...'
 			});
 		}
 
 		$(document).ready(function() {
 			$('.modal').modal();
+			$('#select-loc').modal('open');
 			$('select').formSelect();
 			$('.tooltipped').tooltip();
+
 			updateData();
 		});
 
 		function updateData() {
+
 			if (document.getElementById("tempSwitch").checked == true) {
 				$("#tempField").load("http://tinyweatherstation.com/getdata.php?loc=home&type=temp_c");
 			} else {
