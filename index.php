@@ -219,8 +219,8 @@
 	<script>
 
 		function setLocCookie(){
-			var expire = new Date()
-			var loc = document.querySelector('input[name="location"]:checked').value
+			var expire = new Date();
+			var loc = document.querySelector('input[name="location"]:checked').value;
 			expire.setTime(today.getTime() + 3600000*24*365);
 			document.cookie = 'location='+loc+'; expires='+expire.toGMTString();
 		}
@@ -246,7 +246,7 @@
 		});
 
 		function updateData() {
-			document.cookie = "username=John Doe"
+			document.cookie = "username=John Doe";
 			loc = document.querySelector('input[name="location"]:checked').value;
 
 			if (document.getElementById("tempSwitch").checked == true) {
