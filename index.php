@@ -218,12 +218,13 @@
 	<script type="text/javascript" src="/materialize/js/materialize.min.js"></script>
 	<script>
 
-		function setLocCookie(){
-			var expire = new Date();
-			var loc = document.querySelector('input[name="location"]:checked').value;
-			expire.setTime(today.getTime() + 3600000*24*365);
-			document.cookie = 'location='+loc+'; expires='+expire.toGMTString();
-		}
+		// function setLocCookie(){
+		// 	var expire = new Date();
+		// 	var loc = document.querySelector('input[name="location"]:checked').value;
+		// 	expire.setTime(today.getTime() + 3600000*24*365);
+		// 	document.cookie = 'location='+loc+'; expires='+expire.toGMTString();
+		// }
+		
 		function graphWarning() {
 			M.toast({
 				html: 'Warning: Graphs may not work on mobile devices...'
@@ -246,8 +247,11 @@
 		});
 
 		function updateData() {
-			document.cookie = "username=John Doe";
+			var expire = new Date();
+			expire.setTime(today.getTime() + 3600000*24*365);
+			// document.cookie = "username=John Doe";
 			loc = document.querySelector('input[name="location"]:checked').value;
+			document.cookie = "location="+loc+"; expires="+expire.toGMTString();
 
 			if (document.getElementById("tempSwitch").checked == true) {
 				$("#tempField").load('/getdata.php?loc='+loc+'&type=temp_c');
