@@ -48,7 +48,7 @@
 				<a class="brand-logo center" title="tinyweatherstation.com"><i class="material-icons">cloud</i></a>
 				<ul class="right">
 					<li>
-						<a href="#" onclick="updateData()">Change location<i class="material-icons">edit-location></i></a>
+						<a class="" title="tinyweatherstation.com"><i class="material-icons">cloud</i></a>
 					</li>
 				</ul>
 			</div>
@@ -222,7 +222,6 @@
 
 	<script type="text/javascript" src="/materialize/js/materialize.min.js"></script>
 	<script>
-
 		function getCookie(c_name) {
 			var c_value = " " + document.cookie;
 			var c_start = c_value.indexOf(" " + c_name + "=");
@@ -263,14 +262,14 @@
 		});
 
 		function updateData() {
-			if(getCookie('location') == true) {
+			if (getCookie('location') == true) {
 				loc = getCookie('location')
 			} else {
-					loc = document.querySelector('input[name="location"]:checked').value;
-					var today = new Date();
-					var expire = new Date();
-					expire.setTime(today.getTime() + 3600000 * 24 * 365);
-					document.cookie = "location=" + loc + "; expires=" + expire.toGMTString();
+				loc = document.querySelector('input[name="location"]:checked').value;
+				var today = new Date();
+				var expire = new Date();
+				expire.setTime(today.getTime() + 3600000 * 24 * 365);
+				document.cookie = "location=" + loc + "; expires=" + expire.toGMTString();
 			}
 
 
