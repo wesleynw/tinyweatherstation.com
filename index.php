@@ -58,7 +58,7 @@
 	<div id="select-loc" class="modal fade">
 		<div class="modal-content">
 			<h4>Choose your weather station location...</h4>
-			<form action="#" onchange="updateData()">
+			<form action="#" onchange="updateCookie()">
 				<p>
 					<label>
 						<input type="radio" name="location" value="los_ranchos" class="with-gap">
@@ -261,15 +261,19 @@
 			}
 		});
 
+		function updateCookie() {
+			loc = document.querySelector('input[name="location"]:checked').value;
+			var today = new Date();
+			var expire = new Date();
+			expire.setTime(today.getTime() + 3600000 * 24 * 365);
+			document.cookie = "location=" + loc + "; expires=" + expire.toGMTString();
+		}
+
 		function updateData() {
 			if (getCookie('location') != null) {
 				loc = getCookie('location')
 			} else {
-				loc = document.querySelector('input[name="location"]:checked').value;
-				var today = new Date();
-				var expire = new Date();
-				expire.setTime(today.getTime() + 3600000 * 24 * 365);
-				document.cookie = "location=" + loc + "; expires=" + expire.toGMTString();
+				$('#select-loc').modal('open');
 			}
 
 
