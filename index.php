@@ -53,7 +53,7 @@
 	<div id="select-loc" class="modal fade">
 		<div class="modal-content">
 			<h4>Choose your weather station location...</h4>
-			<form action="#" onchange="setLocCookie(this.value)">
+			<form action="#" onchange="setLocCookie()">
 				<p>
 					<label>
 						<input type="radio" name="location" value="los_ranchos" class="with-gap">
@@ -218,10 +218,11 @@
 	<script type="text/javascript" src="/materialize/js/materialize.min.js"></script>
 	<script>
 
-		function setLocCookie(cookieValue){
+		function setLocCookie(){
 			var expire = new Date()
+			var loc = document.querySelector('input[name="location"]:checked').value
 			expire.setTime(today.getTime() + 3600000*24*365);
-			document.cookie = 'location='+cookieValue+'; expires='+expire.toGMTString();
+			document.cookie = 'location='+loc+'; expires='+expire.toGMTString();
 		}
 		function graphWarning() {
 			M.toast({
