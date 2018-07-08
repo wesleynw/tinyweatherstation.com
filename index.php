@@ -5,13 +5,13 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>TinyWeatherStation</title>
 
-	<link rel="shortcut icon" href="/favicon.ico">
+	<link rel="shortcut icon" href="http://tinyweatherstation.com/favicon.ico">
 
 	<!--Import Google Icon Font-->
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
 	<!--Import materialize.css-->
-	<link type="text/css" rel="stylesheet" href="/materialize/css/materialize.min.css" media="screen,projection" />
+	<link type="text/css" rel="stylesheet" href="http://tinyweatherstation.com/materialize/css/materialize.min.css" media="screen,projection" />
 
 	<script async defer src="https://buttons.github.io/buttons.js"></script>
 
@@ -19,10 +19,10 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
 	<!-- Import highcharts -->
-	<script src="highcharts/code/highstock.js"></script>
-	<script src="highcharts/code/modules/exporting.js"></script>
-	<script src="highcharts/code/modules/export-data.js"></script>
-	<script src="highcharts/code/js/themes/sand-signika.js"></script>
+	<script src="http://tinyweatherstation.com/highcharts/code/highstock.js"></script>
+	<script src="http://tinyweatherstation.com/highcharts/code/modules/exporting.js"></script>
+	<script src="http://tinyweatherstation.com/highcharts/code/modules/export-data.js"></script>
+	<script src="http://tinyweatherstation.com/highcharts/code/js/themes/sand-signika.js"></script>
 
 	<style>
 		body {
@@ -176,7 +176,7 @@
 
 
 
-	<script type="text/javascript" src="/materialize/js/materialize.min.js"></script>
+	<script type="text/javascript" src="http://tinyweatherstation.com/materialize/js/materialize.min.js"></script>
 	<script>
 		function graphWarning() {
 			M.toast({
@@ -196,16 +196,16 @@
 
 		function updateData() {
 			if (document.getElementById("tempSwitch").checked == true) {
-				$("#tempField").load("getdata.php?loc=home&type=temp_c");
+				$("#tempField").load("http://tinyweatherstation.com/getdata.php?loc=home&type=temp_c");
 			} else {
-				$("#tempField").load("getdata.php?loc=home&type=temp_f");
+				$("#tempField").load("http://tinyweatherstation.com/getdata.php?loc=home&type=temp_f");
 			}
 
-			$("#humidityField").load("getdata.php?loc=home&type=humidity");
-			$("#pressureField").load("getdata.php?loc=home&type=pressure");
-			$("#timeField").load("getdata.php?loc=home&type=time");
-			$("#timeField1").load("getdata.php?loc=home&type=time");
-			$("#timeField2").load("getdata.php?loc=home&type=time");
+			$("#humidityField").load("http://tinyweatherstation.com/getdata.php?loc=home&type=humidity");
+			$("#pressureField").load("http://tinyweatherstation.com/getdata.php?loc=home&type=pressure");
+			$("#timeField").load("http://tinyweatherstation.com/getdata.php?loc=home&type=time");
+			$("#timeField1").load("http://tinyweatherstation.com/getdata.php?loc=home&type=time");
+			$("#timeField2").load("http://tinyweatherstation.com/getdata.php?loc=home&type=time");
 		}
 		setInterval(updateData, 1000 * 60 * 1);
 
@@ -216,7 +216,7 @@
 		});
 
 		$(function() {
-			$.getJSON('getdata.php?loc=home&type=all', function(json, status) {
+			$.getJSON('http://tinyweatherstation.com/getdata.php?loc=home&type=all', function(json, status) {
 				var temperature = [],
 					humidity = [],
 					pressure = [];
