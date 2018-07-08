@@ -45,10 +45,17 @@
 	<header>
 		<nav class="navbar-fixed blue lighten-1">
 			<div class="nav-wrapper">
+<<<<<<< HEAD
 				<a class="brand-logo center" title="tinyweatherstation.com"><i class="material-icons">cloud</i></a>
 				<ul class="right">
 					<li>
 						<a href="#" onclick="updateData()">Change location<i class="material-icons">edit-location></a>
+=======
+				<a class="brand-logo center" title="Weather"><i class="material-icons">cloud</i></a>
+				<ul class="right hide-on-med-and-down">
+					<li>
+						<a href="#" onclick="updateData()">Change location<i class="material-icons">edit-location</a>
+>>>>>>> a4e1a32b94512ad7e581d909e4bcdfe98a9c451b
 					</li>
 				</ul>
 			</div>
