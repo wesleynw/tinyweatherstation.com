@@ -11,7 +11,7 @@
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
 	<!--Import materialize.css-->
-	<link type="text/css" rel="stylesheet" href="/materialize/css/materialize.min.css" media="screen,projection" />
+	<link type="text/css" rel="stylesheet" href="https://tinyweatherstation.com/materialize/css/materialize.min.css" media="screen,projection" />
 
 	<script async defer src="https://buttons.github.io/buttons.js"></script>
 
@@ -19,10 +19,10 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
 	<!-- Import highcharts -->
-	<script src="/highcharts/code/highstock.js"></script>
-	<script src="/highcharts/code/modules/exporting.js"></script>
-	<script src="/highcharts/code/modules/export-data.js"></script>
-	<script src="/highcharts/code/js/themes/sand-signika.js"></script>
+	<script src="https://tinyweatherstation.com/highcharts/code/highstock.js"></script>
+	<script src="https://tinyweatherstation.com/highcharts/code/modules/exporting.js"></script>
+	<script src="https://tinyweatherstation.com/highcharts/code/modules/export-data.js"></script>
+	<script src="https://tinyweatherstation.com/highcharts/code/js/themes/sand-signika.js"></script>
 
 	<style>
 		body {
@@ -46,18 +46,27 @@
 		<nav class="navbar-fixed blue lighten-1">
 			<div class="nav-wrapper">
 				<a class="brand-logo center" title="tinyweatherstation.com"><i class="material-icons">cloud</i></a>
-				<ul class="right">
+				<ul class="right hide-on-med-and-down">
 					<li>
 						<a class="modal-trigger" data-target="select-loc" title="Change location..."><i class="material-icons left">edit_location</i>Change location</a>
 					</li>
 				</ul>
 			</div>
 		</nav>
+
+		<ul class="sidenav">
+			<li>
+				<a href="#">Change Location</a>
+			</li>
+			<li>
+				<a href="#">Contact Me</a>
+			</li>
+		</ul>
 	</header>
 
 	<div id="select-loc" class="modal fade">
 		<div class="modal-content">
-			<h4>Choose your weather station location...</h4>
+			<h4>Choose your location...</h4>
 			<form action="#" onchange="updateCookie()">
 				<p>
 					<label>
@@ -166,7 +175,7 @@
 						<i title="Open graph" class="material-icons right modal-trigger waves-effect waves-light" href="#tempGraphModal" onclick="graphWarning()">insert_chart</i>
 					</div>
 					</span>
-					<span class="card-title" id="tempField">Loading...</span>
+					<span class="card-title" id="tempField"></span>
 					<p class="orange-text" id="timeField"></p>
 
 				</div>
@@ -179,7 +188,7 @@
 					<span class="card-title right">
 						<i title="Open graph" class="material-icons right modal-trigger waves-effect waves-light" href="#humidityGraphModal" onclick="graphWarning()">insert_chart</i>
 					</span>
-					<span class="card-title" id="humidityField">Loading...</span>
+					<span class="card-title" id="humidityField"></span>
 					<p class="orange-text" id="timeField1"></p>
 				</div>
 			</div>
@@ -191,7 +200,7 @@
 					<span class="card-title right">
 						<i title="Open graph" class="material-icons right modal-trigger waves-effect waves-light" href="#pressureGraphModal" onclick="graphWarning()">insert_chart</i>
 					</span>
-					<span class="card-title" id="pressureField">Loading...</span>
+					<span class="card-title" id="pressureField"></span>
 					<p class="orange-text" id="timeField2"></p>
 				</div>
 			</div>
@@ -205,9 +214,8 @@
 			<div class="row">
 				<div class="col l6 s12">
 					<h5 class="white-text">Site Info</h5>
-					<p class="grey-text text-lighten-4">This website is a server that displays data taken from <a href="https://www.google.com/maps/place
-  /35%C2%B011'32.1%22N+120%C2%B032'34.0%22W/@35.192244,-120.5433362,19z/data=!3m1!4b1!4m6!3m5!1s0x0:0x0!7e2!8m2!3d35.1922445
-  !4d-120.5427889"><u class="grey-text text-lighten-4">35°11'32.1"N 120°32'34.0"W</u></a> (My Home). Temperature, humidity, and pressure are taken every 15 minutes on a BME280 sensor and uploaded to this website.</p>
+					<p class="grey-text text-lighten-4">This site is part of my Eagle Scout project, multiple weather stations (are being) were installed at various schools, and now they
+					upload their weather data to this website.</p>
 					<p><a class="github-button" href="https://github.com/wesleynw/tinyweatherstation.com" data-size="large" aria-label="Star wesleynw/weather-station on GitHub">See my project on GitHub</a></p>
 				</div>
 			</div>
@@ -220,7 +228,7 @@
 		</div>
 	</footer>
 
-	<script type="text/javascript" src="/materialize/js/materialize.min.js"></script>
+	<script type="text/javascript" src="https://tinyweatherstation.com/materialize/js/materialize.min.js"></script>
 	<script>
 		function getCookie(c_name) {
 			var c_value = " " + document.cookie;
@@ -280,18 +288,18 @@
 
 
 			if (document.getElementById("tempSwitch").checked == true) {
-				$("#tempField").load('/getdata.php?loc=' + loc + '&type=temp_c');
+				$("#tempField").load('https://tinyweatherstation.com/getdata.php?loc=' + loc + '&type=temp_c');
 			} else {
-				$("#tempField").load('/getdata.php?loc=' + loc + '&type=temp_f');
+				$("#tempField").load('https://tinyweatherstation.com/getdata.php?loc=' + loc + '&type=temp_f');
 			}
 
-			$('#humidityField').load('/getdata.php?loc=' + loc + '&type=humidity')
-			$('#pressureField').load('/getdata.php?loc=' + loc + '&type=pressure')
-			$('#timeField').load('/getdata.php?loc=' + loc + '&type=time')
-			$('#timeField1').load('/getdata.php?loc=' + loc + '&type=time')
-			$('#timeField2').load('/getdata.php?loc=' + loc + '&type=time')
+			$('#humidityField').load('https://tinyweatherstation.com/getdata.php?loc=' + loc + '&type=humidity')
+			$('#pressureField').load('https://tinyweatherstation.com/getdata.php?loc=' + loc + '&type=pressure')
+			$('#timeField').load('https://tinyweatherstation.com/getdata.php?loc=' + loc + '&type=time')
+			$('#timeField1').load('https://tinyweatherstation.com/getdata.php?loc=' + loc + '&type=time')
+			$('#timeField2').load('https://tinyweatherstation.com/getdata.php?loc=' + loc + '&type=time')
 
-			$.getJSON('/getdata.php?loc=' + loc + '&type=all', function(json, status) {
+			$.getJSON('https://tinyweatherstation.com/getdata.php?loc=' + loc + '&type=all', function(json, status) {
 				var temperature = [],
 					humidity = [],
 					pressure = [];
