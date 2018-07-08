@@ -53,41 +53,41 @@
 	<div id="select-loc" class="modal fade">
 		<div class="modal-content">
 			<h4>Choose your weather station location...</h4>
-			<form action="#">
+			<form action="#" onchange="setCookie('location', this.value, 365);">
 				<p>
 					<label>
-						<input type="radio" name="location" value="" checked class="with-gap">
+						<input type="radio" name="location" value="los_ranchos" class="with-gap">
 						<span>Los Ranchos Elementary School</span>
 					</label>
 				</p>
 				<p>
 					<label>
-						<input type="radio" name="location" value="" class="with-gap">
+						<input type="radio" name="location" value="hawthorne" class="with-gap">
 						<span>Hawthorne Elementary School</span>
 					</label>
 				</p>
 				<p>
 					<label>
-						<input type="radio" name="location" value="" class="with-gap">
+						<input type="radio" name="location" value="bellevue" class="with-gap">
 						<span>Bellevue Santa Fe Charter School</span>
 					</label>
 				</p>
 				<p>
 					<label>
-						<input type="radio" name="location" value="" class="with-gap">
+						<input type="radio" name="location" value="home" class="with-gap" checked>
 						<span>Home</span>
 					</label>
 				</p>
 				<p>
 					<label>
-					<input type="radio" name="location" value="" class="with-gap">
+					<input type="radio" name="location" value="home_indoor" class="with-gap">
 					<span>Home (Indoor)</span>
 					</label>
 				</p>
-
-
-
 			</form>
+		</div>
+		<div class="modal-footer">
+			<a href="#!" class="modal-close waves-effect waves-light btn-flat" onclick="updateData()">select</a>
 		</div>
 	</div>
 
@@ -215,10 +215,14 @@
 		</div>
 	</footer>
 
-
-
 	<script type="text/javascript" src="https://tinyweatherstation.com/materialize/js/materialize.min.js"></script>
 	<script>
+
+		function setLocCookie(cookieValue){
+			var expire = new Date()
+			expire.setTime(today.getTime() + 3600000*24*365);
+			document.cookie = 'location='+cookieValue+'; expires='+expire.toGMTString();
+		}
 		function graphWarning() {
 			M.toast({
 				html: 'Warning: Graphs may not work on mobile devices...'
@@ -234,30 +238,28 @@
 			updateData();
 		});
 
-		function updateData() {
-
-			if (document.getElementById("tempSwitch").checked == true) {
-				$("#tempField").load("https://tinyweatherstation.com/getdata.php?loc=home&type=temp_c");
-			} else {
-				$("#tempField").load("https://tinyweatherstation.com/getdata.php?loc=home&type=temp_f");
-			}
-
-			$("#humidityField").load("https://tinyweatherstation.com/getdata.php?loc=home&type=humidity");
-			$("#pressureField").load("https://tinyweatherstation.com/getdata.php?loc=home&type=pressure");
-			$("#timeField").load("https://tinyweatherstation.com/getdata.php?loc=home&type=time");
-			$("#timeField1").load("https://tinyweatherstation.com/getdata.php?loc=home&type=time");
-			$("#timeField2").load("https://tinyweatherstation.com/getdata.php?loc=home&type=time");
-		}
-		setInterval(updateData, 1000 * 60 * 1);
-
 		Highcharts.setOptions({
 			global: {
 				useUTC: false,
 			}
 		});
 
-		$(function() {
-			$.getJSON('https://tinyweatherstation.com/getdata.php?loc=home&type=all', function(json, status) {
+		function updateData() {
+			loc = document.querySelector('input[name="location"]:checked').value;
+
+			if (document.getElementById("tempSwitch").checked == true) {
+				$("#tempField").load('https://tinyweatherstation.com/getdata.php?loc='+loc+'&type=temp_c');
+			} else {
+				$("#tempField").load('https://tinyweatherstation.com/getdata.php?loc='+loc+'&type=temp_f');
+			}
+
+			$('#humidityField').load('https://tinyweatherstation.com/getdata.php?loc='+loc+'&type=humidity')
+			$('#pressureField').load('https://tinyweatherstation.com/getdata.php?loc='+loc+'&type=pressure')
+			$('#timeField').load('https://tinyweatherstation.com/getdata.php?loc='+loc+'&type=time')
+			$('#timeField1').load('https://tinyweatherstation.com/getdata.php?loc='+loc+'&type=time')
+			$('#timeField2').load('https://tinyweatherstation.com/getdata.php?loc='+loc+'&type=time')
+
+			$.getJSON('https://tinyweatherstation.com/getdata.php?loc='+loc+'&type=all', function(json, status) {
 				var temperature = [],
 					humidity = [],
 					pressure = [];
@@ -430,7 +432,14 @@
 					}
 				})
 			})
-		})
+
+
+
+
+		}
+		setInterval(updateData, 1000 * 60 * 1);
+
+
 	</script>
 
 </body>
