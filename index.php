@@ -79,7 +79,7 @@
 				</p>
 				<p>
 					<label>
-						<input type="radio" name="location" value="home" class="with-gap" checked>
+						<input type="radio" name="location" value="home" class="with-gap">
 						<span>Home</span>
 					</label>
 				</p>
