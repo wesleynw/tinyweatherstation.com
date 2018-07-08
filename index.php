@@ -245,7 +245,7 @@
 			$('select').formSelect();
 			$('.tooltipped').tooltip();
 			// $('#select-loc').modal('open');
-			$('#select-loc').openModal({
+			$('#select-loc').modal({
 				complete: updateData()
 			})
 
