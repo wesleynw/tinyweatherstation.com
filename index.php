@@ -238,6 +238,15 @@
 			return c_value;
 		}
 
+		function updateCookie() {
+			loc = document.querySelector('input[name="location"]:checked').value;
+			var today = new Date();
+			var expire = new Date();
+			expire.setTime(today.getTime() + 3600000 * 24 * 365);
+			document.cookie = "location=" + loc + "; expires=" + expire.toGMTString();
+			updateData();
+		}
+
 		function graphWarning() {
 			M.toast({
 				html: 'Warning: Graphs may not work on mobile devices...'
@@ -260,14 +269,6 @@
 				useUTC: false,
 			}
 		});
-
-		function updateCookie() {
-			loc = document.querySelector('input[name="location"]:checked').value;
-			var today = new Date();
-			var expire = new Date();
-			expire.setTime(today.getTime() + 3600000 * 24 * 365);
-			document.cookie = "location=" + loc + "; expires=" + expire.toGMTString();
-		}
 
 		function updateData() {
 			if (getCookie('location') != null) {
