@@ -46,6 +46,11 @@
 		<nav class="navbar-fixed blue lighten-1">
 			<div class="nav-wrapper">
 				<a class="brand-logo center" title="Weather"><i class="material-icons">cloud</i></a>
+				<ul class="right hide-on-med-and-down">
+					<li>
+						<a href="#" onclick="updateData()">Change location<i class="material-icons">edit-location</a>
+					</li>
+				</ul>
 			</div>
 		</nav>
 	</header>
@@ -53,7 +58,7 @@
 	<div id="select-loc" class="modal fade">
 		<div class="modal-content">
 			<h4>Choose your weather station location...</h4>
-			<form action="#" onchange="setLocCookie()">
+			<form action="#" onchange="updateData()">
 				<p>
 					<label>
 						<input type="radio" name="location" value="los_ranchos" class="with-gap">
@@ -209,7 +214,7 @@
 		</div>
 		<div class="footer-copyright">
 			<div class="container">
-				Created by Wesley Weisenberger
+				Created by Wesley Weisenberger - Version 1.46.1
 				<a class="grey-text text-lighten-4 right waves-effect waves-light modal-trigger" href="#modal-info">Contact Me</a>
 			</div>
 		</div>
@@ -244,7 +249,6 @@
 			$('.modal').modal();
 			$('select').formSelect();
 			$('.tooltipped').tooltip();
-			// $('#select-loc').modal('open');
 			$('#select-loc').modal({
 				complete: updateData()
 			})
