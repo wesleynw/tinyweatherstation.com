@@ -299,6 +299,11 @@
 				$('#select-loc').modal('open');
 			}
 
+			var modalT = M.Modal.getInstance('tempGraphModal');
+			if(modalT.isOpen){
+				alert('modal is open')
+			} 
+
 
 			if (document.getElementById("tempSwitch").checked == true) {
 				$("#tempField").load('/getdata.php?loc=' + loc + '&type=temp_c');
@@ -351,7 +356,7 @@
 					series: tempSeries,
 					plotOptions: {
 						series: {
-							turboThreshold: 5000 //set it to a larger threshold, it is by default to 1000
+							turboThreshold: 0
 						}
 					},
 					xAxis: {
