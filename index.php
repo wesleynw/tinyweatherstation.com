@@ -299,10 +299,13 @@
 				$('#select-loc').modal('open');
 			}
 
-			var modalT = M.Modal.getInstance('tempGraphModal');
-			if(modalT.isOpen){
-				alert('modal is open')
-			} 
+			// var modalT = M.Modal.getInstance('tempGraphModal');
+			// if(modalT.isOpen){
+			// 	alert('modal is open')
+			// }
+			if($('#tempGraphModal').modal('isOpen')){
+				alert('modal is open');
+			}
 
 
 			if (document.getElementById("tempSwitch").checked == true) {
