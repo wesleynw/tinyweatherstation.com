@@ -83,17 +83,10 @@
 
 	</header>
 
-	<div id="select-loc" class="modal fade bottom-sheet">
+	<div id="select-loc" class="modal fade">
 		<div class="modal-content">
 			<h4>Choose your location...</h4>
 			<form action="#" onchange="updateCookie()">
-				<p>
-					<label>
-						<input type="radio" name="location" value="los_ranchos" class="with-gap" id='los_ranchos_check'>
-						<span>Los Ranchos Elementary School</span>
-					</label>
-				</p>
-				<p>
 					<label>
 						<input type="radio" name="location" value="hawthorne" class="with-gap" id="hawthorne_check">
 						<span>Hawthorne Elementary School</span>
