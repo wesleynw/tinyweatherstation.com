@@ -303,9 +303,9 @@
 			// if(modalT.isOpen){
 			// 	alert('modal is open')
 			// }
-			if($('#tempGraphModal').modal('isOpen')){
-				alert('modal is open');
-			}
+			// if($('#tempGraphModal').modal('isOpen')){
+			// 	alert('modal is open');
+			// }
 
 
 			if (document.getElementById("tempSwitch").checked == true) {
@@ -498,7 +498,7 @@
 
 
 		}
-		setInterval(updateData, 1000 * 60 * 1);
+		setInterval(updateData, 1000 * 60 * 2);
 	</script>
 
 </body>
