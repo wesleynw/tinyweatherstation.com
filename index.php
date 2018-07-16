@@ -322,7 +322,6 @@
 			// }
 
 			var modalTemp = M.Modal.getInstance(tempGraphModal);
-			modalTemp.isOpen()
 
 
 			if (document.getElementById("tempSwitch").checked == true) {
