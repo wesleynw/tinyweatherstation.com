@@ -11,7 +11,7 @@
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
 	<!--Import materialize.css-->
-	<link type="text/css" rel="stylesheet" href="/materialize/css/materialize.min.css" media="screen,projection" />
+	<link type="text/css" rel="stylesheet" href="https://tinyweatherstation.com/materialize/css/materialize.min.css" media="screen,projection" />
 
 	<script async defer src="https://buttons.github.io/buttons.js"></script>
 
@@ -87,7 +87,7 @@
 		<div class="modal-content">
 			<h4>Choose your location...</h4>
 			<form action="#" onchange="updateCookie()">
-					<label>
+				<label>
 						<input type="radio" name="location" value="hawthorne" class="with-gap" id="hawthorne_check">
 						<span>Hawthorne Elementary School</span>
 					</label>
@@ -274,13 +274,27 @@
 		}
 
 		$(document).ready(function() {
-			$('.modal').modal();
+			document.addEventListener('DOMContentLoaded', function() {
+				var elems = document.querySelectorAll('.modal');
+				var instances = M.Modal.init(elems, options);
+			});
+			// $('.modal').modal();
+
 			$('.sidenav').sidenav();
 			$('select').formSelect();
 			$('.tooltipped').tooltip();
+
+
 			$('#select-loc').modal({
 				complete: updateData()
 			})
+
+			M.Modal.getInstance('select-loc');
+			M.Modal.getInstance('select-loc').onCloseStart(updateData());
+
+
+
+
 
 			updateData();
 		});
@@ -308,7 +322,7 @@
 			// }
 
 			var modalTemp = M.Modal.getInstance(tempGraphModal);
-			modalTemp.open()
+			modalTemp.isOpen()
 
 
 			if (document.getElementById("tempSwitch").checked == true) {
