@@ -307,6 +307,9 @@
 			// 	alert('modal is open');
 			// }
 
+			var modalTemp = M.Modal.getInstance(tempGraphModal);
+			modalTemp.open()
+
 
 			if (document.getElementById("tempSwitch").checked == true) {
 				$("#tempField").load('/getdata.php?loc=' + loc + '&type=temp_c');
