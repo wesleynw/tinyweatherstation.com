@@ -144,7 +144,7 @@
 	</div>
 
 
-	<div id="tempGraphModal" class="modal" style="height: 100%">
+	<div id="tempGraphModal" class="modal modal-fixed-footer" style="height: 100%">
 		<div class="modal-content">
 			<div id="tempGraph">
 				<div class="progress">
