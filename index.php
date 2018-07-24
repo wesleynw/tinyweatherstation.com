@@ -37,6 +37,7 @@
 
 		.modal {
 			width: 100% !important;
+			/* height: 100% !important; */
 		}
 	</style>
 </head>
@@ -66,8 +67,8 @@
 					<a href="#name"><span class="white-text name">tinyweatherstation.com</span></a>
 				</div>
 				<li>
-					<a class="modal-trigger" data-target="select-loc">
-					<i class="material-icons">edit_location</i>Edit location</a>
+					<a class="modal-trigger sidenav-close" data-target="select-loc">
+					<i class="material-icons">edit_location</i>Change location</a>
 				</li>
 				<li>
 					<a class="modal-trigger" data-target="modal-info">
@@ -83,44 +84,34 @@
 
 	</header>
 
-	<div id="select-loc" class="modal fade bottom-sheet">
+	<div id="select-loc" class="modal fade ">
 		<div class="modal-content">
 			<h4>Choose your location...</h4>
 			<form action="#" onchange="updateCookie()">
-				<p>
-					<label>
-						<input type="radio" name="location" value="los_ranchos" class="with-gap" id='los_ranchos_check'>
-						<span>Los Ranchos Elementary School</span>
-					</label>
-				</p>
-				<p>
-					<label>
-						<input type="radio" name="location" value="hawthorne" class="with-gap" id="hawthorne_check">
+				<label>
+						<input type="radio" name="location" value="hawthorne" class="with-gap modal-close" id="hawthorne_check">
 						<span>Hawthorne Elementary School</span>
 					</label>
 				</p>
 				<p>
 					<label>
-						<input type="radio" name="location" value="bellevue" class="with-gap" id="bellevue_check">
+						<input type="radio" name="location" value="bellevue" class="with-gap modal-close" id="bellevue_check">
 						<span>Bellevue Santa Fe Charter School</span>
 					</label>
 				</p>
 				<p>
 					<label>
-						<input type="radio" name="location" value="home" class="with-gap" id="home_check">
+						<input type="radio" name="location" value="home" class="with-gap modal-close" id="home_check">
 						<span>Home</span>
 					</label>
 				</p>
 				<p>
 					<label>
-					<input type="radio" name="location" value="home_indoor" class="with-gap" id="home_indoor_check">
+					<input type="radio" name="location" value="home_indoor" class="with-gap modal-close" id="home_indoor_check">
 					<span>Home (Indoor)</span>
 					</label>
 				</p>
 			</form>
-		</div>
-		<div class="modal-footer">
-			<a href="#!" class="modal-close waves-effect waves-light btn-flat" onclick="updateData()">select</a>
 		</div>
 	</div>
 
@@ -155,7 +146,12 @@
 
 	<div id="tempGraphModal" class="modal">
 		<div class="modal-content">
-			<div id="tempGraph" width="100%"></div>
+			<div id="tempGraph">
+				<div class="progress">
+					<div class="indeterminate">
+					</div>
+				</div>
+			</div>
 		</div>
 		<div class="modal-footer">
 			<a href="" class="modal-close waves-effect waves-light btn-flat">cool</a>
@@ -163,7 +159,12 @@
 	</div>
 	<div id="humidityGraphModal" class="modal">
 		<div class="modal-content">
-			<div id="humidityGraph"></div>
+			<div id="humidityGraph">
+				<div class="progress">
+					<div class="indeterminate">
+					</div>
+				</div>
+			</div>
 		</div>
 		<div class="modal-footer">
 			<a href="" class="modal-close waves-effect waves-light btn-flat">cool</a>
@@ -171,7 +172,12 @@
 	</div>
 	<div id="pressureGraphModal" class="modal">
 		<div class="modal-content">
-			<div id="pressureGraph"></div>
+			<div id="pressureGraph">
+				<div class="progress">
+					<div class="indeterminate">
+					</div>
+				</div>
+			</div>
 		</div>
 		<div class="modal-footer">
 			<a href="" class="modal-close waves-effect waves-light btn-flat">cool</a>
@@ -179,25 +185,33 @@
 	</div>
 
 	<main>
+
+
 		<div class="row container">
-			<div class="s12 m6">
-				<div class="card indigo lighten-1">
-					<div class="card-content white-text">
-						<span class="card-title">Temperature</span>
-						<span class="right card-title">
+
+			<div class="card grey ">
+				<div class="card-content blue-text text-darken-4">
+					<span class="card-title"><b>Selected location:</b></span>
+					<span class="card-title" id="loc-display">None selected</span>
+				</div>
+			</div>
+
+			<div class="card indigo lighten-1">
+				<div class="card-content white-text">
+					<span class="card-title">Temperature</span>
+					<span class="right card-title">
               <div class="switch">
               <label class="white-text">
               °F
               <input type="checkbox" id="tempSwitch" onclick="updateData()">
               <span class="lever"></span> °C
-						</label>
-						<i title="Open graph" class="material-icons right modal-trigger waves-effect waves-light" href="#tempGraphModal" onclick="graphWarning()">insert_chart</i>
-					</div>
-					</span>
-					<span class="card-title" id="tempField"></span>
-					<p class="orange-text" id="timeField"></p>
-
+					</label>
+					<i title="Open graph" class="material-icons right modal-trigger waves-effect waves-light" href="#tempGraphModal" onclick="graphWarning(); updateGraph()">insert_chart</i>
 				</div>
+				</span>
+				<span class="card-title" id="tempField"></span>
+				<p class="orange-text" id="timeField"></p>
+
 			</div>
 		</div>
 		<div>
@@ -205,7 +219,7 @@
 				<div class="card-content white-text">
 					<span class="card-title">Humidity (%)</span>
 					<span class="card-title right">
-						<i title="Open graph" class="material-icons right modal-trigger waves-effect waves-light" href="#humidityGraphModal" onclick="graphWarning()">insert_chart</i>
+						<i title="Open graph" class="material-icons right modal-trigger waves-effect waves-light" href="#humidityGraphModal" onclick="graphWarning(); updateGraph()">insert_chart</i>
 					</span>
 					<span class="card-title" id="humidityField"></span>
 					<p class="orange-text" id="timeField1"></p>
@@ -217,7 +231,7 @@
 				<div class="card-content white-text">
 					<span class="card-title">Pressure (kPa)  <i class="material-icons modal-trigger waves-effect waves-light" href="#pressureInfoModal">info</i></span>
 					<span class="card-title right">
-						<i title="Open graph" class="material-icons right modal-trigger waves-effect waves-light" href="#pressureGraphModal" onclick="graphWarning()">insert_chart</i>
+						<i title="Open graph" class="material-icons right modal-trigger waves-effect waves-light" href="#pressureGraphModal" onclick="graphWarning(); updateGraph()">insert_chart</i>
 					</span>
 					<span class="card-title" id="pressureField"></span>
 					<p class="orange-text" id="timeField2"></p>
@@ -233,7 +247,7 @@
 			<div class="row">
 				<div class="col l6 s12 ">
 					<h5 class="white-text">Site Info</h5>
-					<p class="grey-text text-lighten-4">This site is part of my Eagle Scout project, multiple weather stations (are being) were installed at various schools, and now they upload their weather data to this website.</p>
+					<p class="grey-text text-lighten-4">This site is part of my Eagle Scout project. Multiple weather stations (are being) were installed at various schools, and now they upload their weather data to this website.</p>
 					<p class="hide-on-med-and-down"><a class="github-button" href="https://github.com/wesleynw/tinyweatherstation.com" data-size="large" aria-label="Star wesleynw/weather-station on GitHub">See my project on GitHub</a></p>
 
 				</div>
@@ -241,7 +255,7 @@
 		</div>
 		<div class="footer-copyright">
 			<div class="container">
-				Created by Wesley Weisenberger - v1.79.1
+				Created by Wesley Weisenberger - v1.98.1
 				<a class="grey-text text-lighten-4 right waves-effect waves-light modal-trigger hide-on-med-and-down" href="#modal-info">Contact Me</a>
 			</div>
 		</div>
@@ -249,6 +263,16 @@
 
 	<script type="text/javascript" src="/materialize/js/materialize.min.js"></script>
 	<script>
+		$(document).ready(function() {
+			$('.modal').modal();
+			$('.sidenav').sidenav();
+			$('select').formSelect();
+			$('.tooltipped').tooltip();
+
+
+			updateData();
+		});
+
 		function getCookie(c_name) {
 			var c_value = " " + document.cookie;
 			var c_start = c_value.indexOf(" " + c_name + "=");
@@ -280,25 +304,26 @@
 			});
 		}
 
-		$(document).ready(function() {
-			$('.modal').modal();
-			$('.sidenav').sidenav();
-			$('select').formSelect();
-			$('.tooltipped').tooltip();
-			$('#select-loc').modal({
-				complete: updateData()
-			})
-
-			updateData();
-		});
-
 		Highcharts.setOptions({
 			global: {
 				useUTC: false,
 			}
 		});
 
+		function getActualName(name) {
+			if (name == 'home') {
+				return 'Home'
+			} else if (name == 'los_ranchos') {
+				return 'Los Ranchos Elementary School'
+			} else if (name == 'bellevue') {
+				return 'Bellevue Santa Fe Charter School'
+			} else if (name == 'home_indoor') {
+				return 'Home (Indoor)'
+			}
+		}
+
 		function updateData() {
+
 			if (getCookie('location') != null) {
 				loc = getCookie('location')
 				document.getElementById(loc + '_check').checked = true;
@@ -307,10 +332,12 @@
 			}
 
 
+
+			$('#loc-display').text(getActualName(loc));
 			if (document.getElementById("tempSwitch").checked == true) {
-				$("#tempField").load('/getdata.php?loc=' + loc + '&type=temp_c');
+				$('#tempField').load('/getdata.php?loc=' + loc + '&type=temp_c');
 			} else {
-				$("#tempField").load('/getdata.php?loc=' + loc + '&type=temp_f');
+				$('#tempField').load('/getdata.php?loc=' + loc + '&type=temp_f');
 			}
 
 			$('#humidityField').load('/getdata.php?loc=' + loc + '&type=humidity')
@@ -319,6 +346,10 @@
 			$('#timeField1').load('/getdata.php?loc=' + loc + '&type=time')
 			$('#timeField2').load('/getdata.php?loc=' + loc + '&type=time')
 
+		}
+		setInterval(updateData, 1000 * 60 * 2);
+
+		function updateGraph() {
 			$.getJSON('/getdata.php?loc=' + loc + '&type=all', function(json, status) {
 				var temperature = [],
 					humidity = [],
@@ -358,7 +389,7 @@
 					series: tempSeries,
 					plotOptions: {
 						series: {
-							turboThreshold: 5000 //set it to a larger threshold, it is by default to 1000
+							turboThreshold: 0
 						}
 					},
 					xAxis: {
@@ -404,7 +435,7 @@
 					series: humiditySeries,
 					plotOptions: {
 						series: {
-							turboThreshold: 5000 //set it to a larger threshold, it is by default to 1000
+							turboThreshold: 0
 						}
 					},
 					xAxis: {
@@ -450,7 +481,7 @@
 					series: pressureSeries,
 					plotOptions: {
 						series: {
-							turboThreshold: 5000 //set it to a larger threshold, it is by default to 1000
+							turboThreshold: 0
 						}
 					},
 					xAxis: {
@@ -493,11 +524,7 @@
 				})
 			})
 
-
-
-
 		}
-		setInterval(updateData, 1000 * 60 * 1);
 	</script>
 
 </body>
