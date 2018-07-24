@@ -5,7 +5,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>TinyWeatherStation</title>
 
-	<link rel="shortcut icon" href="/favicon.ico">
+	<link rel="shortcut icon" href="https://tinyweatherstation.com/favicon.ico">
 
 	<!--Import Google Icon Font-->
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -19,10 +19,10 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
 	<!-- Import highcharts -->
-	<script src="/highcharts/code/highstock.js"></script>
-	<script src="/highcharts/code/modules/exporting.js"></script>
-	<script src="/highcharts/code/modules/export-data.js"></script>
-	<script src="/highcharts/code/js/themes/sand-signika.js"></script>
+	<script src="https://tinyweatherstation.com/highcharts/code/highstock.js"></script>
+	<script src="https://tinyweatherstation.com/highcharts/code/modules/exporting.js"></script>
+	<script src="https://tinyweatherstation.com/highcharts/code/modules/export-data.js"></script>
+	<script src="https://tinyweatherstation.com/highcharts/code/js/themes/sand-signika.js"></script>
 
 	<style>
 		body {
@@ -37,6 +37,7 @@
 
 		.modal {
 			width: 100% !important;
+			/* height: 100% !important; */
 		}
 	</style>
 </head>
@@ -66,8 +67,8 @@
 					<a href="#name"><span class="white-text name">tinyweatherstation.com</span></a>
 				</div>
 				<li>
-					<a class="modal-trigger" data-target="select-loc">
-					<i class="material-icons">edit_location</i>Edit location</a>
+					<a class="modal-trigger sidenav-close" data-target="select-loc">
+					<i class="material-icons">edit_location</i>Change location</a>
 				</li>
 				<li>
 					<a class="modal-trigger" data-target="modal-info">
@@ -83,37 +84,34 @@
 
 	</header>
 
-	<div id="select-loc" class="modal fade">
+	<div id="select-loc" class="modal fade ">
 		<div class="modal-content">
 			<h4>Choose your location...</h4>
 			<form action="#" onchange="updateCookie()">
 				<label>
-						<input type="radio" name="location" value="hawthorne" class="with-gap" id="hawthorne_check">
-						<span>Hawthorne Elementary School</span>
+						<input type="radio" name="location" value="hawthorne" class="with-gap modal-close" id="hawthorne_check">
+						<span>Hawthorne Elementary School (Not yet functional)</span>
 					</label>
 				</p>
 				<p>
 					<label>
-						<input type="radio" name="location" value="bellevue" class="with-gap" id="bellevue_check">
-						<span>Bellevue Santa Fe Charter School</span>
+						<input type="radio" name="location" value="bellevue" class="with-gap modal-close" id="bellevue_check">
+						<span>Bellevue Santa Fe Charter School (Not yet functional)</span>
 					</label>
 				</p>
 				<p>
 					<label>
-						<input type="radio" name="location" value="home" class="with-gap" id="home_check">
+						<input type="radio" name="location" value="home" class="with-gap modal-close" id="home_check">
 						<span>Home</span>
 					</label>
 				</p>
 				<p>
 					<label>
-					<input type="radio" name="location" value="home_indoor" class="with-gap" id="home_indoor_check">
+					<input type="radio" name="location" value="home_indoor" class="with-gap modal-close" id="home_indoor_check">
 					<span>Home (Indoor)</span>
 					</label>
 				</p>
 			</form>
-		</div>
-		<div class="modal-footer">
-			<a href="#!" class="modal-close waves-effect waves-light btn-flat" onclick="updateData()">select</a>
 		</div>
 	</div>
 
@@ -148,7 +146,12 @@
 
 	<div id="tempGraphModal" class="modal">
 		<div class="modal-content">
-			<div id="tempGraph" width="100%"></div>
+			<div id="tempGraph">
+				<div class="progress">
+					<div class="indeterminate">
+					</div>
+				</div>
+			</div>
 		</div>
 		<div class="modal-footer">
 			<a href="" class="modal-close waves-effect waves-light btn-flat">cool</a>
@@ -156,7 +159,12 @@
 	</div>
 	<div id="humidityGraphModal" class="modal">
 		<div class="modal-content">
-			<div id="humidityGraph"></div>
+			<div id="humidityGraph">
+				<div class="progress">
+					<div class="indeterminate">
+					</div>
+				</div>
+			</div>
 		</div>
 		<div class="modal-footer">
 			<a href="" class="modal-close waves-effect waves-light btn-flat">cool</a>
@@ -164,7 +172,12 @@
 	</div>
 	<div id="pressureGraphModal" class="modal">
 		<div class="modal-content">
-			<div id="pressureGraph"></div>
+			<div id="pressureGraph">
+				<div class="progress">
+					<div class="indeterminate">
+					</div>
+				</div>
+			</div>
 		</div>
 		<div class="modal-footer">
 			<a href="" class="modal-close waves-effect waves-light btn-flat">cool</a>
@@ -172,25 +185,33 @@
 	</div>
 
 	<main>
+
+
 		<div class="row container">
-			<div class="s12 m6">
-				<div class="card indigo lighten-1">
-					<div class="card-content white-text">
-						<span class="card-title">Temperature</span>
-						<span class="right card-title">
+
+			<div class="card grey ">
+				<div class="card-content blue-text text-darken-4">
+					<span class="card-title"><b>Selected location:</b></span>
+					<span class="card-title" id="loc-display">None selected</span>
+				</div>
+			</div>
+
+			<div class="card indigo lighten-1">
+				<div class="card-content white-text">
+					<span class="card-title">Temperature</span>
+					<span class="right card-title">
               <div class="switch">
               <label class="white-text">
               °F
               <input type="checkbox" id="tempSwitch" onclick="updateData()">
               <span class="lever"></span> °C
-						</label>
-						<i title="Open graph" class="material-icons right modal-trigger waves-effect waves-light" href="#tempGraphModal" onclick="graphWarning()">insert_chart</i>
-					</div>
-					</span>
-					<span class="card-title" id="tempField"></span>
-					<p class="orange-text" id="timeField"></p>
-
+					</label>
+					<i title="Open graph" class="material-icons right modal-trigger waves-effect waves-light" href="#tempGraphModal" onclick="graphWarning(); updateGraph()">insert_chart</i>
 				</div>
+				</span>
+				<span class="card-title" id="tempField"></span>
+				<p class="orange-text" id="timeField"></p>
+
 			</div>
 		</div>
 		<div>
@@ -198,7 +219,7 @@
 				<div class="card-content white-text">
 					<span class="card-title">Humidity (%)</span>
 					<span class="card-title right">
-						<i title="Open graph" class="material-icons right modal-trigger waves-effect waves-light" href="#humidityGraphModal" onclick="graphWarning()">insert_chart</i>
+						<i title="Open graph" class="material-icons right modal-trigger waves-effect waves-light" href="#humidityGraphModal" onclick="graphWarning(); updateGraph()">insert_chart</i>
 					</span>
 					<span class="card-title" id="humidityField"></span>
 					<p class="orange-text" id="timeField1"></p>
@@ -210,7 +231,7 @@
 				<div class="card-content white-text">
 					<span class="card-title">Pressure (kPa)  <i class="material-icons modal-trigger waves-effect waves-light" href="#pressureInfoModal">info</i></span>
 					<span class="card-title right">
-						<i title="Open graph" class="material-icons right modal-trigger waves-effect waves-light" href="#pressureGraphModal" onclick="graphWarning()">insert_chart</i>
+						<i title="Open graph" class="material-icons right modal-trigger waves-effect waves-light" href="#pressureGraphModal" onclick="graphWarning(); updateGraph()">insert_chart</i>
 					</span>
 					<span class="card-title" id="pressureField"></span>
 					<p class="orange-text" id="timeField2"></p>
@@ -240,8 +261,18 @@
 		</div>
 	</footer>
 
-	<script type="text/javascript" src="/materialize/js/materialize.min.js"></script>
+	<script type="text/javascript" src="https://tinyweatherstation.com/materialize/js/materialize.min.js"></script>
 	<script>
+		$(document).ready(function() {
+			$('.modal').modal();
+			$('.sidenav').sidenav();
+			$('select').formSelect();
+			$('.tooltipped').tooltip();
+
+
+			updateData();
+		});
+
 		function getCookie(c_name) {
 			var c_value = " " + document.cookie;
 			var c_start = c_value.indexOf(" " + c_name + "=");
@@ -273,39 +304,26 @@
 			});
 		}
 
-		$(document).ready(function() {
-			document.addEventListener('DOMContentLoaded', function() {
-				var elems = document.querySelectorAll('.modal');
-				var instances = M.Modal.init(elems, options);
-			});
-			// $('.modal').modal();
-
-			$('.sidenav').sidenav();
-			$('select').formSelect();
-			$('.tooltipped').tooltip();
-
-
-			$('#select-loc').modal({
-				complete: updateData()
-			})
-
-			M.Modal.getInstance('select-loc');
-			M.Modal.getInstance('select-loc').onCloseStart(updateData());
-
-
-
-
-
-			updateData();
-		});
-
 		Highcharts.setOptions({
 			global: {
 				useUTC: false,
 			}
 		});
 
+		function getActualName(name) {
+			if (name == 'home') {
+				return 'Home'
+			} else if (name == 'los_ranchos') {
+				return 'Los Ranchos Elementary School'
+			} else if (name == 'bellevue') {
+				return 'Bellevue Santa Fe Charter School'
+			} else if (name == 'home_indoor') {
+				return 'Home (Indoor)'
+			} 
+		}
+
 		function updateData() {
+
 			if (getCookie('location') != null) {
 				loc = getCookie('location')
 				document.getElementById(loc + '_check').checked = true;
@@ -313,30 +331,26 @@
 				$('#select-loc').modal('open');
 			}
 
-			// var modalT = M.Modal.getInstance('tempGraphModal');
-			// if(modalT.isOpen){
-			// 	alert('modal is open')
-			// }
-			// if($('#tempGraphModal').modal('isOpen')){
-			// 	alert('modal is open');
-			// }
-
-			var modalTemp = M.Modal.getInstance(tempGraphModal);
 
 
+			$('#loc-display').text(getActualName(loc));
 			if (document.getElementById("tempSwitch").checked == true) {
-				$("#tempField").load('/getdata.php?loc=' + loc + '&type=temp_c');
+				$('#tempField').load('https://tinyweatherstation.com/getdata.php?loc=' + loc + '&type=temp_c');
 			} else {
-				$("#tempField").load('/getdata.php?loc=' + loc + '&type=temp_f');
+				$('#tempField').load('https://tinyweatherstation.com/getdata.php?loc=' + loc + '&type=temp_f');
 			}
 
-			$('#humidityField').load('/getdata.php?loc=' + loc + '&type=humidity')
-			$('#pressureField').load('/getdata.php?loc=' + loc + '&type=pressure')
-			$('#timeField').load('/getdata.php?loc=' + loc + '&type=time')
-			$('#timeField1').load('/getdata.php?loc=' + loc + '&type=time')
-			$('#timeField2').load('/getdata.php?loc=' + loc + '&type=time')
+			$('#humidityField').load('https://tinyweatherstation.com/getdata.php?loc=' + loc + '&type=humidity')
+			$('#pressureField').load('https://tinyweatherstation.com/getdata.php?loc=' + loc + '&type=pressure')
+			$('#timeField').load('https://tinyweatherstation.com/getdata.php?loc=' + loc + '&type=time')
+			$('#timeField1').load('https://tinyweatherstation.com/getdata.php?loc=' + loc + '&type=time')
+			$('#timeField2').load('https://tinyweatherstation.com/getdata.php?loc=' + loc + '&type=time')
 
-			$.getJSON('/getdata.php?loc=' + loc + '&type=all', function(json, status) {
+		}
+		setInterval(updateData, 1000 * 60 * 2);
+
+		function updateGraph() {
+			$.getJSON('https://tinyweatherstation.com/getdata.php?loc=' + loc + '&type=all', function(json, status) {
 				var temperature = [],
 					humidity = [],
 					pressure = [];
@@ -421,7 +435,7 @@
 					series: humiditySeries,
 					plotOptions: {
 						series: {
-							turboThreshold: 5000 //set it to a larger threshold, it is by default to 1000
+							turboThreshold: 0
 						}
 					},
 					xAxis: {
@@ -467,7 +481,7 @@
 					series: pressureSeries,
 					plotOptions: {
 						series: {
-							turboThreshold: 5000 //set it to a larger threshold, it is by default to 1000
+							turboThreshold: 0
 						}
 					},
 					xAxis: {
@@ -510,11 +524,7 @@
 				})
 			})
 
-
-
-
 		}
-		setInterval(updateData, 1000 * 60 * 2);
 	</script>
 
 </body>
