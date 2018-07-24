@@ -5,13 +5,13 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>TinyWeatherStation</title>
 
-	<link rel="shortcut icon" href="https://tinyweatherstation.com/favicon.ico">
+	<link rel="shortcut icon" href="/favicon.ico">
 
 	<!--Import Google Icon Font-->
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
 	<!--Import materialize.css-->
-	<link type="text/css" rel="stylesheet" href="https://tinyweatherstation.com/materialize/css/materialize.min.css" media="screen,projection" />
+	<link type="text/css" rel="stylesheet" href="/materialize/css/materialize.min.css" media="screen,projection" />
 
 	<script async defer src="https://buttons.github.io/buttons.js"></script>
 
@@ -19,10 +19,10 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
 	<!-- Import highcharts -->
-	<script src="https://tinyweatherstation.com/highcharts/code/highstock.js"></script>
-	<script src="https://tinyweatherstation.com/highcharts/code/modules/exporting.js"></script>
-	<script src="https://tinyweatherstation.com/highcharts/code/modules/export-data.js"></script>
-	<script src="https://tinyweatherstation.com/highcharts/code/js/themes/sand-signika.js"></script>
+	<script src="/highcharts/code/highstock.js"></script>
+	<script src="/highcharts/code/modules/exporting.js"></script>
+	<script src="/highcharts/code/modules/export-data.js"></script>
+	<script src="/highcharts/code/js/themes/sand-signika.js"></script>
 
 	<style>
 		body {
@@ -261,7 +261,7 @@
 		</div>
 	</footer>
 
-	<script type="text/javascript" src="https://tinyweatherstation.com/materialize/js/materialize.min.js"></script>
+	<script type="text/javascript" src="/materialize/js/materialize.min.js"></script>
 	<script>
 		$(document).ready(function() {
 			$('.modal').modal();
@@ -319,7 +319,7 @@
 				return 'Bellevue Santa Fe Charter School'
 			} else if (name == 'home_indoor') {
 				return 'Home (Indoor)'
-			} 
+			}
 		}
 
 		function updateData() {
@@ -335,22 +335,22 @@
 
 			$('#loc-display').text(getActualName(loc));
 			if (document.getElementById("tempSwitch").checked == true) {
-				$('#tempField').load('https://tinyweatherstation.com/getdata.php?loc=' + loc + '&type=temp_c');
+				$('#tempField').load('/getdata.php?loc=' + loc + '&type=temp_c');
 			} else {
-				$('#tempField').load('https://tinyweatherstation.com/getdata.php?loc=' + loc + '&type=temp_f');
+				$('#tempField').load('/getdata.php?loc=' + loc + '&type=temp_f');
 			}
 
-			$('#humidityField').load('https://tinyweatherstation.com/getdata.php?loc=' + loc + '&type=humidity')
-			$('#pressureField').load('https://tinyweatherstation.com/getdata.php?loc=' + loc + '&type=pressure')
-			$('#timeField').load('https://tinyweatherstation.com/getdata.php?loc=' + loc + '&type=time')
-			$('#timeField1').load('https://tinyweatherstation.com/getdata.php?loc=' + loc + '&type=time')
-			$('#timeField2').load('https://tinyweatherstation.com/getdata.php?loc=' + loc + '&type=time')
+			$('#humidityField').load('/getdata.php?loc=' + loc + '&type=humidity')
+			$('#pressureField').load('/getdata.php?loc=' + loc + '&type=pressure')
+			$('#timeField').load('/getdata.php?loc=' + loc + '&type=time')
+			$('#timeField1').load('/getdata.php?loc=' + loc + '&type=time')
+			$('#timeField2').load('/getdata.php?loc=' + loc + '&type=time')
 
 		}
 		setInterval(updateData, 1000 * 60 * 2);
 
 		function updateGraph() {
-			$.getJSON('https://tinyweatherstation.com/getdata.php?loc=' + loc + '&type=all', function(json, status) {
+			$.getJSON('/getdata.php?loc=' + loc + '&type=all', function(json, status) {
 				var temperature = [],
 					humidity = [],
 					pressure = [];
