@@ -90,13 +90,13 @@
 			<form action="#" onchange="updateCookie()">
 				<label>
 						<input type="radio" name="location" value="hawthorne" class="with-gap modal-close" id="hawthorne_check">
-						<span>Hawthorne Elementary School (Not yet functional)</span>
+						<span>Hawthorne Elementary School</span>
 					</label>
 				</p>
 				<p>
 					<label>
 						<input type="radio" name="location" value="bellevue" class="with-gap modal-close" id="bellevue_check">
-						<span>Bellevue Santa Fe Charter School (Not yet functional)</span>
+						<span>Bellevue Santa Fe Charter School</span>
 					</label>
 				</p>
 				<p>
