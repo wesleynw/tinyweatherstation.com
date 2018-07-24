@@ -247,7 +247,7 @@
 			<div class="row">
 				<div class="col l6 s12 ">
 					<h5 class="white-text">Site Info</h5>
-					<p class="grey-text text-lighten-4">This site is part of my Eagle Scout project, multiple weather stations (are being) were installed at various schools, and now they upload their weather data to this website.</p>
+					<p class="grey-text text-lighten-4">This site is part of my Eagle Scout project. Multiple weather stations (are being) were installed at various schools, and now they upload their weather data to this website.</p>
 					<p class="hide-on-med-and-down"><a class="github-button" href="https://github.com/wesleynw/tinyweatherstation.com" data-size="large" aria-label="Star wesleynw/weather-station on GitHub">See my project on GitHub</a></p>
 
 				</div>
@@ -255,7 +255,7 @@
 		</div>
 		<div class="footer-copyright">
 			<div class="container">
-				Created by Wesley Weisenberger - v1.79.1
+				Created by Wesley Weisenberger - v1.95.1
 				<a class="grey-text text-lighten-4 right waves-effect waves-light modal-trigger hide-on-med-and-down" href="#modal-info">Contact Me</a>
 			</div>
 		</div>
