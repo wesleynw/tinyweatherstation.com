@@ -144,7 +144,7 @@
 	</div>
 
 
-	<div id="tempGraphModal" class="modal">
+	<div id="tempGraphModal" class="modal" style="max-height: 100%">
 		<div class="modal-content">
 			<div id="tempGraph">
 				<div class="progress">
@@ -157,7 +157,7 @@
 			<a href="" class="modal-close waves-effect waves-light btn-flat">cool</a>
 		</div>
 	</div>
-	<div id="humidityGraphModal" class="modal">
+	<div id="humidityGraphModal" class="modal" style="max-height: 100%">
 		<div class="modal-content">
 			<div id="humidityGraph">
 				<div class="progress">
@@ -170,7 +170,7 @@
 			<a href="" class="modal-close waves-effect waves-light btn-flat">cool</a>
 		</div>
 	</div>
-	<div id="pressureGraphModal" class="modal">
+	<div id="pressureGraphModal" class="modal" style="max-height: 100%">
 		<div class="modal-content">
 			<div id="pressureGraph">
 				<div class="progress">
