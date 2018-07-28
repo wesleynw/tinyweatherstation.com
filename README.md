@@ -17,7 +17,7 @@ For the charts used in the website, an open-source graphing library was used cal
 ## Accessing the databases
 Apart from using the website to access the data, you can use PHP to query the server to get raw data, which could be displayed anywhere.
 
-The format of the PHP query is '?loc=**location**&type=**type of data**'
+The format of the PHP query is `?loc=**location**&type=**type of data**`
 
 For example:
 ```
