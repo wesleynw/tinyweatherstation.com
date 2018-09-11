@@ -255,7 +255,7 @@
 		</div>
 		<div class="footer-copyright">
 			<div class="container">
-				Created by Wesley Weisenberger - v1.105.1
+				Created by Wesley Weisenberger - v1.111.1
 				<a class="grey-text text-lighten-4 right waves-effect waves-light modal-trigger hide-on-med-and-down" href="#modal-info">Contact Me</a>
 			</div>
 		</div>
@@ -392,6 +392,9 @@
 							turboThreshold: 0
 						}
 					},
+					tooltip: {
+						valueDecimals: 2
+					},
 					xAxis: {
 						type: 'datetime'
 					},
@@ -445,6 +448,9 @@
 						title: {
 							text: 'Humidity'
 						},
+						tooltip: {
+							valueDecimals: 2
+						},
 						labels: {
 							format: '{value}%'
 						}
@@ -490,6 +496,9 @@
 					yAxis: [{
 						title: {
 							text: 'Pressure'
+						},
+						tooltip: {
+							valueDecimals: 2
 						},
 						labels: {
 							format: '{value}kPa'
