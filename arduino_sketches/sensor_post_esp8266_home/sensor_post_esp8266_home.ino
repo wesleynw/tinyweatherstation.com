@@ -13,8 +13,8 @@ char user[] = "...";
 char password[] = "...";
 
 //wifi credentials
-char ssid[] = "Hogwarts Great Hall Wifi";
-char pass[] = "you'reawizardharry1440";
+char ssid[] = "...";
+char pass[] = "...";
 
 char INSERT_SQL[] = "INSERT INTO weather.home (`timestamp`, `temperature`, `humidity`, `pressure`) VALUES (CURRENT_TIMESTAMP, '%s', '%s', '%s');";
 char query[128];
