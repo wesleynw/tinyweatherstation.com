@@ -441,15 +441,16 @@
 							turboThreshold: 0
 						}
 					},
+					,
+					tooltip: {
+						valueDecimals: 2
+					},
 					xAxis: {
 						type: 'datetime',
 					},
 					yAxis: [{
 						title: {
 							text: 'Humidity'
-						},
-						tooltip: {
-							valueDecimals: 2
 						},
 						labels: {
 							format: '{value}%'
@@ -490,15 +491,15 @@
 							turboThreshold: 0
 						}
 					},
+					tooltip: {
+						valueDecimals: 2
+					},
 					xAxis: {
 						type: 'datetime',
 					},
 					yAxis: [{
 						title: {
 							text: 'Pressure'
-						},
-						tooltip: {
-							valueDecimals: 2
 						},
 						labels: {
 							format: '{value}kPa'
