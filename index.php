@@ -255,7 +255,7 @@
 		</div>
 		<div class="footer-copyright">
 			<div class="container">
-				Created by Wesley Weisenberger - v1.111.1
+				Created by Wesley Weisenberger - v1.119
 				<a class="grey-text text-lighten-4 right waves-effect waves-light modal-trigger hide-on-med-and-down" href="#modal-info">Contact Me</a>
 			</div>
 		</div>
