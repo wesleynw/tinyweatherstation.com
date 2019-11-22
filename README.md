@@ -1,6 +1,6 @@
 # Weather Station
 
-### This is a project for my Eagle Scout Project
+### 
 I will install weather stations at various elementary schools around San Luis Obispo, California.
 
 ## How it works
